@@ -1,4 +1,4 @@
-[wiki-instructions-url]: https://freya022.github.io/BotCommands-Wiki/dev/setup/getting-started/#using-the-bot-template
+[wiki-instructions-url]: https://freya022.github.io/BotCommands-Wiki/3.X/setup/getting-started/#using-the-bot-template
 
 # Template bot
 
