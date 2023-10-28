@@ -1,10 +1,10 @@
 package io.github.freya022.bot;
 
 import ch.qos.logback.classic.ClassicConstants;
-import com.freya02.botcommands.api.Logging;
-import com.freya02.botcommands.api.core.BBuilder;
 import io.github.freya022.bot.config.Config;
 import io.github.freya022.bot.config.Environment;
+import io.github.freya022.botcommands.api.Logging;
+import io.github.freya022.botcommands.api.core.BBuilder;
 import net.dv8tion.jda.api.interactions.DiscordLocale;
 import org.slf4j.Logger;
 
@@ -16,7 +16,7 @@ public class Main {
         final Logger logger = Logging.getLogger();
         logger.info("Loading logback configuration at {}", Environment.LOGBACK_CONFIG_PATH.toAbsolutePath());
 
-        // I use hotswap agent in order to update my code without restarting the bot
+        // I use hotswap agent to update my code without restarting the bot
         // Of course this only supports modifying existing code
         // Refer to https://github.com/HotswapProjects/HotswapAgent#readme on how to use hotswap
 

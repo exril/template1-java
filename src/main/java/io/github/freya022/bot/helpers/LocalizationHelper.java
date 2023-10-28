@@ -1,11 +1,11 @@
 package io.github.freya022.bot.helpers;
 
-import com.freya02.botcommands.api.core.service.annotations.BService;
-import com.freya02.botcommands.api.localization.context.LocalizationContext;
+import io.github.freya022.botcommands.api.core.service.annotations.BService;
+import io.github.freya022.botcommands.api.localization.context.LocalizationContext;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.freya02.botcommands.api.localization.Localization.Entry.entry;
+import static io.github.freya022.botcommands.api.localization.Localization.Entry.entry;
 
 @BService
 public class LocalizationHelper {

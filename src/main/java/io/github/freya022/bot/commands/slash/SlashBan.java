@@ -1,19 +1,19 @@
 package io.github.freya022.bot.commands.slash;
 
-import com.freya02.botcommands.api.Logging;
-import com.freya02.botcommands.api.commands.annotations.BotPermissions;
-import com.freya02.botcommands.api.commands.annotations.Command;
-import com.freya02.botcommands.api.commands.annotations.UserPermissions;
-import com.freya02.botcommands.api.commands.application.ApplicationCommand;
-import com.freya02.botcommands.api.commands.application.slash.GuildSlashEvent;
-import com.freya02.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
-import com.freya02.botcommands.api.commands.application.slash.annotations.SlashOption;
-import com.freya02.botcommands.api.components.Button;
-import com.freya02.botcommands.api.components.Components;
-import com.freya02.botcommands.api.core.entities.InputUser;
-import com.freya02.botcommands.api.localization.annotations.LocalizationBundle;
-import com.freya02.botcommands.api.localization.context.AppLocalizationContext;
 import io.github.freya022.bot.helpers.LocalizationHelper;
+import io.github.freya022.botcommands.api.Logging;
+import io.github.freya022.botcommands.api.commands.annotations.BotPermissions;
+import io.github.freya022.botcommands.api.commands.annotations.Command;
+import io.github.freya022.botcommands.api.commands.annotations.UserPermissions;
+import io.github.freya022.botcommands.api.commands.application.ApplicationCommand;
+import io.github.freya022.botcommands.api.commands.application.slash.GuildSlashEvent;
+import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
+import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
+import io.github.freya022.botcommands.api.components.Button;
+import io.github.freya022.botcommands.api.components.Components;
+import io.github.freya022.botcommands.api.core.entities.InputUser;
+import io.github.freya022.botcommands.api.localization.annotations.LocalizationBundle;
+import io.github.freya022.botcommands.api.localization.context.AppLocalizationContext;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle;
@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import static com.freya02.botcommands.api.localization.Localization.Entry.entry;
+import static io.github.freya022.botcommands.api.localization.Localization.Entry.entry;
 
 @Command
 public class SlashBan extends ApplicationCommand {

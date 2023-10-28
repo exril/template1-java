@@ -1,8 +1,8 @@
 package io.github.freya022.bot.config;
 
-import com.freya02.botcommands.api.Logging;
-import com.freya02.botcommands.api.core.service.annotations.BService;
 import com.google.gson.Gson;
+import io.github.freya022.botcommands.api.Logging;
+import io.github.freya022.botcommands.api.core.service.annotations.BService;
 import org.slf4j.Logger;
 
 import java.io.IOException;
