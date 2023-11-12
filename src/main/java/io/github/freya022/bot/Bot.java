@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.IEventManager;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -26,11 +27,17 @@ public class Bot extends JDAService {
         return getDefaultIntents();
     }
 
+    @NotNull
+    @Override
+    public Set<CacheFlag> getCacheFlags() {
+        return Set.of();
+    }
+
     @Override
     public void createJDA(@NotNull BReadyEvent event, @NotNull IEventManager eventManager) {
         JDABuilder.createLight(config.getToken(), getIntents())
-                .setMaxReconnectDelay(120) //Try to reconnect every 2 minutes instead of the default 15 minutes
-                .setActivity(Activity.playing("with Java"))
+                .enableCache(getCacheFlags())
+                .setActivity(Activity.customStatus("In Java with ❤️"))
                 .setEventManager(eventManager) //Mandatory
                 .build();
     }
