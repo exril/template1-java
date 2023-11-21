@@ -1,12 +1,16 @@
 package io.github.freya022.bot;
 
 import ch.qos.logback.classic.ClassicConstants;
+import dev.reformator.stacktracedecoroutinator.runtime.DecoroutinatorRuntime;
 import io.github.freya022.bot.config.Config;
 import io.github.freya022.bot.config.Environment;
 import io.github.freya022.botcommands.api.Logging;
 import io.github.freya022.botcommands.api.core.BBuilder;
 import net.dv8tion.jda.api.interactions.DiscordLocale;
 import org.slf4j.Logger;
+
+import java.lang.management.ManagementFactory;
+import java.util.Arrays;
 
 public class Main {
     private static final String MAIN_PACKAGE_NAME = "io.github.freya022.bot";
@@ -19,6 +23,15 @@ public class Main {
         // I use hotswap agent to update my code without restarting the bot
         // Of course this only supports modifying existing code
         // Refer to https://github.com/HotswapProjects/HotswapAgent#readme on how to use hotswap
+
+        // stacktrace-decoroutinator has issues when reloading with hotswap agent
+        if (ManagementFactory.getRuntimeMXBean().getInputArguments().contains("-XX:+AllowEnhancedClassRedefinition")) {
+            logger.info("Skipping stacktrace-decoroutinator as enhanced hotswap is active");
+        } else if (Arrays.asList(args).contains("--no-decoroutinator")) {
+            logger.info("Skipping stacktrace-decoroutinator as --no-decoroutinator is specified");
+        } else {
+            DecoroutinatorRuntime.INSTANCE.load();
+        }
 
         try {
             final Config config = Config.getInstance();
