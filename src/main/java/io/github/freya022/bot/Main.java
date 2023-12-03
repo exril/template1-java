@@ -4,8 +4,8 @@ import ch.qos.logback.classic.ClassicConstants;
 import dev.reformator.stacktracedecoroutinator.runtime.DecoroutinatorRuntime;
 import io.github.freya022.bot.config.Config;
 import io.github.freya022.bot.config.Environment;
-import io.github.freya022.botcommands.api.Logging;
 import io.github.freya022.botcommands.api.core.BBuilder;
+import io.github.freya022.botcommands.api.core.Logging;
 import net.dv8tion.jda.api.interactions.DiscordLocale;
 import org.slf4j.Logger;
 

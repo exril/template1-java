@@ -2,7 +2,7 @@ package io.github.freya022.bot.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import io.github.freya022.botcommands.api.Logging;
+import io.github.freya022.botcommands.api.core.Logging;
 import io.github.freya022.botcommands.api.core.db.HikariSourceSupplier;
 import io.github.freya022.botcommands.api.core.service.annotations.BService;
 import org.flywaydb.core.Flyway;

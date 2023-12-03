@@ -1,7 +1,7 @@
 package io.github.freya022.bot.config;
 
 import com.google.gson.Gson;
-import io.github.freya022.botcommands.api.Logging;
+import io.github.freya022.botcommands.api.core.Logging;
 import io.github.freya022.botcommands.api.core.service.annotations.BService;
 import org.slf4j.Logger;
 

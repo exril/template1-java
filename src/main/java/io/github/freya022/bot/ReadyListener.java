@@ -1,6 +1,6 @@
 package io.github.freya022.bot;
 
-import io.github.freya022.botcommands.api.Logging;
+import io.github.freya022.botcommands.api.core.Logging;
 import io.github.freya022.botcommands.api.core.annotations.BEventListener;
 import io.github.freya022.botcommands.api.core.service.annotations.BService;
 import net.dv8tion.jda.api.JDA;

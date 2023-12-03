@@ -1,7 +1,6 @@
 package io.github.freya022.bot.commands.slash;
 
 import io.github.freya022.bot.helpers.LocalizationHelper;
-import io.github.freya022.botcommands.api.Logging;
 import io.github.freya022.botcommands.api.commands.annotations.BotPermissions;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
 import io.github.freya022.botcommands.api.commands.annotations.UserPermissions;
@@ -11,6 +10,7 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.components.Button;
 import io.github.freya022.botcommands.api.components.Components;
+import io.github.freya022.botcommands.api.core.Logging;
 import io.github.freya022.botcommands.api.core.entities.InputUser;
 import io.github.freya022.botcommands.api.localization.annotations.LocalizationBundle;
 import io.github.freya022.botcommands.api.localization.context.AppLocalizationContext;
@@ -65,39 +65,37 @@ public class SlashBan extends ApplicationCommand {
             }
         }
 
-        final Button cancelButton = componentsService.ephemeralButton(ButtonStyle.PRIMARY, localizationContext.localize("buttons.cancel"), builder -> {
-            // Restrict button to caller, not necessary since this is an ephemeral reply tho
-            builder.addUsers(event.getUser());
-            builder.setOneUse(true);
+        final Button cancelButton = componentsService.ephemeralButton(ButtonStyle.PRIMARY, localizationContext.localize("buttons.cancel"))
+                // Restrict button to caller, not necessary since this is an ephemeral reply tho
+                .addUsers(event.getUser())
+                .oneUse(true)
+                .bindTo(buttonEvent -> {
+                    LOGGER.debug("Ban cancelled for {}", target.getId());
+                    buttonEvent.editMessage(localizationContext.localize("outputs.cancelled"))
+                            .setComponents()
+                            .queue();
 
-            builder.bindTo(buttonEvent -> {
-                LOGGER.debug("Ban cancelled for {}", target.getId());
-                buttonEvent.editMessage(localizationContext.localize("outputs.cancelled"))
-                        .setComponents()
-                        .queue();
+                    //Cancel logic
+                })
+                .build();
 
-                //Cancel logic
-            });
-        });
+        final Button confirmButton = componentsService.ephemeralButton(ButtonStyle.DANGER, localizationContext.localize("buttons.confirm"))
+                // Restrict button to caller, not necessary since this is an ephemeral reply tho
+                .addUsers(event.getUser())
+                .oneUse(true)
+                .bindTo(buttonEvent -> {
+                    LOGGER.debug("Ban confirmed for {}, {} {} of messages were deleted, reason: '{}'", target.getId(), time, unit, finalReason);
+                    buttonEvent.editMessage(localizationContext.localize(
+                            "outputs.success",
+                            entry("userMention", target.getAsMention()),
+                            entry("time", time),
+                            entry("unit", localizationHelper.localize(time, unit, localizationContext)),
+                            entry("reason", finalReason)
+                    )).setComponents().queue();
 
-        final Button confirmButton = componentsService.ephemeralButton(ButtonStyle.DANGER, localizationContext.localize("buttons.confirm"), builder -> {
-            // Restrict button to caller, not necessary since this is an ephemeral reply tho
-            builder.addUsers(event.getUser());
-            builder.setOneUse(true);
-
-            builder.bindTo(buttonEvent -> {
-                LOGGER.debug("Ban confirmed for {}, {} {} of messages were deleted, reason: '{}'", target.getId(), time, unit, finalReason);
-                buttonEvent.editMessage(localizationContext.localize(
-                        "outputs.success",
-                        entry("userMention", target.getAsMention()),
-                        entry("time", time),
-                        entry("unit", localizationHelper.localize(time, unit, localizationContext)),
-                        entry("reason", finalReason)
-                )).setComponents().queue();
-
-                //Ban logic
-            });
-        });
+                    //Ban logic
+                })
+                .build();
 
         componentsService.newEphemeralGroup(builder -> {
             builder.timeout(1, TimeUnit.MINUTES, () -> {
